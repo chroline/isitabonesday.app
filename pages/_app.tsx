@@ -37,7 +37,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <Component {...pageProps} />
       </AppWrapper>
       {/*@ts-ignore*/}
-      <PWAPrompt delay={5000} />
+      <PWAPrompt delay={2500} />
     </>
   );
 }
