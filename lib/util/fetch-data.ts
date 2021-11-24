@@ -1,22 +1,29 @@
-import cheerio from "cheerio";
+import { google } from "googleapis";
 
 import { IStore } from "./Store";
 
-type BonesBackendRes = Array<{
-  _id: string;
-  date: string;
-  value: "n" | "b";
-  link: string;
-  embedblock: string;
-}>;
+const spreadsheetId = "13jHJgGRXc9xbOUgGTpAXTdQru1Z6nbPSMRLZvuVlUbY";
+
+const auth = new google.auth.GoogleAuth({
+  keyFile: "lib/util/gapi-key.json",
+  scopes: "https://www.googleapis.com/auth/spreadsheets",
+});
 
 export async function getMostRecentData() {
-  const [todayData] = (await (await fetch("https://bones-backend.herokuapp.com/bones")).json()) as BonesBackendRes;
+  const {
+    data: { values },
+  } = await google.sheets({ version: "v4", auth: await auth.getClient() }).spreadsheets.values.get({
+    auth,
+    spreadsheetId,
+    range: "A:E",
+  });
+
+  const [, date, _isBonesDay, videoId, caption] = values[values.length - 1];
 
   return {
-    date: todayData.date,
-    isBonesDay: todayData.value === "b",
-    videoId: todayData.link.split("https://www.tiktok.com/@jongraz/video/")[1].split("?")[0],
-    caption: cheerio.load(todayData.embedblock, null)("blockquote section").text().split(" 🔮🦴🔮")[0] + " 🔮🦴🔮",
+    date,
+    isBonesDay: _isBonesDay === "bones day :)",
+    videoId,
+    caption,
   } as IStore & { date: string };
 }

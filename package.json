@@ -14,6 +14,7 @@
     "cheerio": "^1.0.0-rc.10",
     "constate": "^3.3.0",
     "framer-motion": "^4.1.17",
+    "googleapis": "^91.0.0",
     "next": "^11.1.2",
     "next-plugin-preact": "^3.0.3",
     "next-pwa": "^5.4.0",
