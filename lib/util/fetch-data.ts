@@ -5,7 +5,7 @@ import { IStore } from "./Store";
 const spreadsheetId = "13jHJgGRXc9xbOUgGTpAXTdQru1Z6nbPSMRLZvuVlUbY";
 
 const auth = new google.auth.GoogleAuth({
-  keyFile: "lib/util/gapi-key.json",
+  credentials: JSON.parse(process.env.GAPI_KEY),
   scopes: "https://www.googleapis.com/auth/spreadsheets",
 });
 
