@@ -10,10 +10,6 @@ import "~/fonts/Radial Sans/stylesheet.css";
 const AppWrapper = dynamic(async () => (await import("~/components/AppWrapper")).AppWrapper);
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const PWAPrompt = dynamic(() => import("react-ios-pwa-prompt"), {
-    ssr: false,
-  });
-
   return (
     <>
       <Head>
@@ -22,8 +18,6 @@ function MyApp({ Component, pageProps }: AppProps) {
       <AppWrapper>
         <Component {...pageProps} />
       </AppWrapper>
-      {/*@ts-ignore*/}
-      <PWAPrompt delay={2500} />
     </>
   );
 }
