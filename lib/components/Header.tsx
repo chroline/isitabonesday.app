@@ -21,7 +21,7 @@ export const Header: React.FC = () => {
         ❤️{" "}
         <Text opacity={0.65} as={"span"}>
           by{" "}
-          <Link href={"https://instagram.com/colegawin"} isExternal>
+          <Link href={"https://lynk.colegaw.in"} isExternal>
             Cole Gawin
           </Link>
         </Text>
