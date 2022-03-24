@@ -2,9 +2,8 @@ import React from "react";
 
 import { Heading, Link } from "@chakra-ui/layout";
 
-import { isYesterday } from "../util/date-helpers";
 import { useStore } from "~/util/Store";
-import { isToday } from "~/util/date-helpers";
+import { isToday, isYesterday } from "~/util/date-helpers";
 
 export const ForecastDisplay: React.FC = () => {
   const [{ isBonesDay, date, caption, videoId }] = useStore();
@@ -31,7 +30,13 @@ export const ForecastDisplay: React.FC = () => {
           {dateDisplay}:
         </Heading>
       </Link>
-      <Heading as={"h1"} color={color + ".600"} size={"4xl"} fontWeight={"900"}>
+      <Heading
+        as={"h1"}
+        color={color + ".600"}
+        size={"4xl"}
+        fontWeight={"900"}
+        sx={{ fontVariationSettings: `"SOFT" 50,"WONK" 1` }}
+      >
         {isBonesDay ? "bones day :)" : "no bones day :("}
       </Heading>
       <Heading color={color + ".900"} opacity={"0.85"} size={"md"} fontWeight={"600"}>
