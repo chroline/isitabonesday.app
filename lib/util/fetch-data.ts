@@ -2,7 +2,7 @@ import { google } from "googleapis";
 
 import { IStore } from "./Store";
 
-const spreadsheetId = "13jHJgGRXc9xbOUgGTpAXTdQru1Z6nbPSMRLZvuVlUbY";
+const spreadsheetId = process.env.SHEET_ID;
 
 const auth = new google.auth.GoogleAuth({
   credentials: JSON.parse(process.env.GAPI_KEY),
